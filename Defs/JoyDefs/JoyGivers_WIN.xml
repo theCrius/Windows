@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JoyGiverDef>
+		<defName>WIN_Joy_LookOutWindow</defName>
+		<giverClass>WindowMod.JoyGiver_LookOutWindow</giverClass>
+		<baseChance>1</baseChance>
+		<jobDef>WIN_LookOutWindow</jobDef>
+		<joyKind>Meditative</joyKind>
+		<requiredCapacities>
+			<li>Sight</li>
+		</requiredCapacities>
+	</JoyGiverDef>
+
+</Defs>

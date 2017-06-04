@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<!-- Window -->
+	<WIN_WindowImpassable>Window is blocked on one or more sides.</WIN_WindowImpassable>
+	<WIN_WindowNeedsWall>Window must be built onto a constructed wall.</WIN_WindowNeedsWall>
+	<WIN_WatchingToxicFallout>Watching the toxic dust clouds outside.</WIN_WatchingToxicFallout>
+	<WIN_WatchingVolcanicWinter>Watching the ash fall.</WIN_WatchingVolcanicWinter>
+	<WIN_WatchingRain>Watching the rain outside.</WIN_WatchingRain>
+	<WIN_WatchingSnow>Watching the snow fall.</WIN_WatchingSnow>
+
+</LanguageData>

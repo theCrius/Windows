@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ThoughtDefs>
+
+	<ThoughtDef>
+		<defName>WIN_LookedOutWindowRegular</defName>
+		<durationDays>0.5</durationDays>
+		<stackLimit>1</stackLimit>
+		<stages>
+			<li>
+				<label>looked out a window</label>
+				<description>I got to experience the beauty of the outdoors without having to go outside.</description>
+				<baseMoodEffect>2</baseMoodEffect>
+			</li> 
+		</stages>
+	</ThoughtDef>
+	
+	<ThoughtDef>
+		<defName>WIN_LookedOutWindowCabinFever</defName>
+		<durationDays>0.5</durationDays>
+		<stackLimit>1</stackLimit>
+		<stages>
+			<li>
+				<label>looked out a window</label>
+				<description>I was able to see the outdoors, if only through a window. I still want to go outside, though.</description>
+				<baseMoodEffect>4</baseMoodEffect>
+			</li> 
+		</stages>
+	</ThoughtDef>
+
+
+</ThoughtDefs>

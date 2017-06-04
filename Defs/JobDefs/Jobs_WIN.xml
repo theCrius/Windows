@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JobDef>
+		<defName>WIN_LookOutWindow</defName>
+		<driverClass>WindowMod.JobDriver_LookOutWindow</driverClass>
+		<reportString>Looking out a window.</reportString>
+		<joyDuration>2500</joyDuration>
+		<joyGainRate>0.3</joyGainRate>
+		<joyKind>Meditative</joyKind>
+	</JobDef>
+
+</Defs>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>WindowMod</name>
+  <author>cuproPanda</author>
+  <url>https://ludeon.com/forums/index.php?topic=13400.0</url>
+  <targetVersion>0.17.0</targetVersion>
+  <description>Adds windows to the game, allowing sunlight to pass through walls. Windows can provide enough sunlight to grow crops.</description>
+</ModMetaData>

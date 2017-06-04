@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ThingDefinitions>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>WIN_WindowGlower</defName>
+		<label>light from a window</label>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Cupro/Null</texPath>
+			<drawSize>(0,0)</drawSize>
+		</graphicData>
+		<size>(1,1)</size>
+		<useHitPoints>false</useHitPoints>
+		<statBases>
+			<Flammability>0</Flammability>
+		</statBases>
+		<altitudeLayer>Floor</altitudeLayer>
+		<passability>Standable</passability>
+		<selectable>false</selectable>
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<tickerType>Rare</tickerType>
+		<isSaveable>false</isSaveable>
+		<building>
+			<isEdifice>false</isEdifice>
+			<deconstructible>false</deconstructible>
+		</building>
+	</ThingDef>
+
+</ThingDefinitions>

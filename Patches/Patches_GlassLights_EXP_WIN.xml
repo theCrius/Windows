@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<!-- If Expanded Power is found, change the window cost -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<Operations>
+			<li Class="WindowMod.PatchOperationFindMod">
+				<modName>Expanded Power</modName>
+			</li>
+			<li Class="PatchOperationReplace">
+				<success>Always</success>
+				<xpath>/ThingDefs/ThingDef[defName="WIN_Window"]/CostList</xpath>
+	            <value>
+	            	<CostList>
+	            		<EXP_FusedQuartz>2</EXP_FusedQuartz>
+	            	</CostList>
+	            </value>
+			</li>
+		</Operations>
+	</Operation>
+	
+	<!-- If Glass+Lights is found, change the window cost -->
+	<!-- This will have precedence over Expanded Power, since regular glass is easier to get -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<Operations>
+			<li Class="WindowMod.PatchOperationFindMod">
+				<modName>Glass+Lights</modName>
+			</li>
+			<li Class="PatchOperationReplace">
+				<success>Always</success>
+				<xpath>/ThingDefs/ThingDef[defName="WIN_Window"]/CostList</xpath>
+	            <value>
+	            	<CostList>
+	            		<Glass>2</Glass>
+	            	</CostList>
+	            </value>
+			</li>
+		</Operations>
+	</Operation>
+
+</Patch>
