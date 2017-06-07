@@ -39,7 +39,7 @@ namespace WindowMod {
       low.tickAction = () => {
         base.WatchTickAction();
         if (glower != null) {
-          pawn.needs.joy.GainJoy(Mathf.Max(window.WindowViewBeauty, 0f) * 0.000144f, joyKind);
+          pawn.needs.joy.GainJoy(Mathf.Max(window.WindowViewBeauty, 0.1f) * 0.000576f, joyKind);
           pawn.Drawer.rotator.FaceCell(TargetB.Cell);
         }
       };

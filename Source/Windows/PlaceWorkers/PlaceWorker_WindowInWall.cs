@@ -27,7 +27,9 @@ namespace WindowMod {
       Building edifice = loc.GetEdifice(Map);
       // Only allow placing on a constructed wall
       // Additional checks provided to hopefully catch any modded walls as well
-      if (edifice == null || (edifice.def != ThingDefOf.Wall && (edifice.Faction != Faction.OfPlayer || (LinkFlags.Wall & edifice.def.graphicData.linkFlags) == LinkFlags.None))) {
+      if (edifice == null || edifice.def == null || (edifice.def != ThingDefOf.Wall && 
+          ((edifice.Faction == null || edifice.Faction != Faction.OfPlayer) || 
+          edifice.def.graphicData == null || edifice.def.graphicData.linkFlags == 0 || (LinkFlags.Wall & edifice.def.graphicData.linkFlags) == LinkFlags.None))) {
         return "WIN_WindowNeedsWall".Translate();
       }
 
