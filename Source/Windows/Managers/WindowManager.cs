@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using RimWorld;
 using Verse;
 
 namespace WindowMod {
   // Tells each Window what stats its GlowComp should have based on the weather, so each one doesn't have to calculate the same stats
   public class WindowManager : MapComponent {
 
-    private WeatherDef weatherDef;
+    private WeatherDef lastWeatherDef = Clear;
+    private WeatherDef curWeatherDef = Clear;
     private float lastSunStrength;
     private float curSunStrength = 0f;
     private TickManager tickMan;
+    private WeatherManager weatherMan;
+    private SkyManager skyMan;
 
     private static WeatherDef Clear =             WeatherDef.Named("Clear");
     private static WeatherDef Fog =               WeatherDef.Named("Fog");
@@ -24,7 +28,13 @@ namespace WindowMod {
         if (curSunStrength == 0f) {
           GetSunlight();
         }
-        return map.skyManager.CurSkyGlow * Mathf.Lerp(lastSunStrength, curSunStrength, TransitionLerpFactor);
+        return skyMan.CurSkyGlow * Mathf.Lerp(lastSunStrength, curSunStrength, TransitionLerpFactor);
+      }
+    }
+
+    public ColorInt FactoredColor {
+      get {
+        return new ColorInt(SkyTarget.Lerp(lastWeatherDef.Worker.CurSkyTarget(map), curWeatherDef.Worker.CurSkyTarget(map), weatherMan.TransitionLerpFactor).colors.sky);
       }
     }
 
@@ -37,6 +47,8 @@ namespace WindowMod {
 
     public WindowManager(Map map) : base(map) {
       tickMan = Find.TickManager;
+      weatherMan = map.weatherManager;
+      skyMan = map.skyManager;
     }
 
 
@@ -48,8 +60,10 @@ namespace WindowMod {
       if (tickMan.TicksGame % 2000 == 0) {
         // Save the last sun strength
         lastSunStrength = curSunStrength;
+        // Save the last weather
+        lastWeatherDef = weatherMan.lastWeather;
         // Get the current weather
-        weatherDef = map.weatherManager.curWeather;
+        curWeatherDef = weatherMan.curWeather;
       }
     }
 
@@ -57,22 +71,22 @@ namespace WindowMod {
     private void GetSunlight() {
 
       // Clear weather provides the maximum sunlight
-      if (weatherDef == Clear) {
+      if (curWeatherDef == Clear) {
         curSunStrength = 1f;
         return;
       }
       // These weathers provide 60% sunlight
-      else if (weatherDef == Fog ||
-               weatherDef == Rain ||
-               weatherDef == SnowGentle) {
+      else if (curWeatherDef == Fog ||
+               curWeatherDef == Rain ||
+               curWeatherDef == SnowGentle) {
         curSunStrength = 0.6f;
         return;
       }
       // These weathers get only 35% sunlight
-      else if (weatherDef == FoggyRain ||
-               weatherDef == SnowHard ||
-               weatherDef == DryThunderstorm ||
-               weatherDef == RainyThunderstorm) {
+      else if (curWeatherDef == FoggyRain ||
+               curWeatherDef == SnowHard ||
+               curWeatherDef == DryThunderstorm ||
+               curWeatherDef == RainyThunderstorm) {
         curSunStrength = 0.35f;
         return;
       }

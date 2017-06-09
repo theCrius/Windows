@@ -4,7 +4,7 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>WIN_Window</defName>
 		<thingClass>WindowMod.Building_Window</thingClass>
-		<label>window</label>
+		<label>framed window</label>
 		<Description>A simple window for allowing natural light into a room. Can be built into a wall.</Description>
 		<blockLight>true</blockLight>
 		<graphicData>

@@ -8,5 +8,6 @@
 	<WIN_WatchingVolcanicWinter>Watching the ash fall.</WIN_WatchingVolcanicWinter>
 	<WIN_WatchingRain>Watching the rain outside.</WIN_WatchingRain>
 	<WIN_WatchingSnow>Watching the snow fall.</WIN_WatchingSnow>
+	<WIN_InspectWindow>Visible sky light: {0}%</WIN_InspectWindow>
 
 </LanguageData>

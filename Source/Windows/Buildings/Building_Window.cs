@@ -2,6 +2,7 @@
 
 using RimWorld;
 using Verse;
+using System.Text;
 
 namespace WindowMod {
 
@@ -15,8 +16,8 @@ namespace WindowMod {
     private IntVec3 viewCell2;
     private Building glower1;
     private Building glower2;
-    private float debugGlow1;
-    private float debugGlow2;
+    private float skyLight1;
+    private float skyLight2;
     private WindowManager mgr;
 
 
@@ -33,42 +34,42 @@ namespace WindowMod {
     }
 
 
-    private static CellRect CellRectNorth(IntVec3 center) {
+    private static CellRect CellRectNorth(IntVec3 root) {
       return new CellRect() {
-        minX = center.x - 1,
-        minZ = center.z + 1,
-        maxX = center.x + 1,
-        maxZ = center.z + 5
+        minX = root.x - 1,
+        minZ = root.z + 1,
+        maxX = root.x + 1,
+        maxZ = root.z + 5
       };
     }
 
 
-    private static CellRect CellRectSouth(IntVec3 center) {
+    private static CellRect CellRectSouth(IntVec3 root) {
       return new CellRect() {
-        minX = center.x - 1,
-        minZ = center.z - 5,
-        maxX = center.x + 1,
-        maxZ = center.z - 1
+        minX = root.x - 1,
+        minZ = root.z - 5,
+        maxX = root.x + 1,
+        maxZ = root.z - 1
       };
     }
 
 
-    private static CellRect CellRectEast(IntVec3 center) {
+    private static CellRect CellRectEast(IntVec3 root) {
       return new CellRect() {
-        minX = center.x + 1,
-        minZ = center.z - 1,
-        maxX = center.x + 5,
-        maxZ = center.z + 1
+        minX = root.x + 1,
+        minZ = root.z - 1,
+        maxX = root.x + 5,
+        maxZ = root.z + 1
       };
     }
 
 
-    private static CellRect CellRectWest(IntVec3 center) {
+    private static CellRect CellRectWest(IntVec3 root) {
       return new CellRect() {
-        minX = center.x - 5,
-        minZ = center.z - 1,
-        maxX = center.x - 1,
-        maxZ = center.z + 1
+        minX = root.x - 5,
+        minZ = root.z - 1,
+        maxX = root.x - 1,
+        maxZ = root.z + 1
       };
     }
 
@@ -130,18 +131,18 @@ namespace WindowMod {
       base.TickRare();
 
       if (Spawned) {
-        debugGlow1 = GetAverageGlow(viewCell1, cellRect1);
-        debugGlow2 = GetAverageGlow(viewCell2, cellRect2);
+        skyLight1 = GetAverageGlow(viewCell1, cellRect1);
+        skyLight2 = GetAverageGlow(viewCell2, cellRect2);
 
-        if (System.Math.Abs(debugGlow1 - debugGlow2) < 0.01f) {
+        if (System.Math.Abs(skyLight1 - skyLight2) < 0.01f) {
           // no changes
         }
-        else if (debugGlow1 > debugGlow2) {
+        else if (skyLight1 > skyLight2) {
           UpdateGlower(glower1, 0f);
-          UpdateGlower(glower2, debugGlow1);
+          UpdateGlower(glower2, skyLight1);
         }
         else {
-          UpdateGlower(glower1, debugGlow2);
+          UpdateGlower(glower1, skyLight2);
           UpdateGlower(glower2, 0f);
         } 
       }
@@ -176,13 +177,12 @@ namespace WindowMod {
 
 
     private void UpdateGlower(Building glower, float glow) {
-      var intensity = (int)UnityEngine.Mathf.Lerp(0f, 255f, glow);
       var radius = UnityEngine.Mathf.Lerp(1f, 7f, glow);
 
       // Change the color and radius based on sky colors and clearance
       var glowComp = glower.GetComp<CompGlower>();
 
-      glowComp.Props.glowColor = new ColorInt(intensity, intensity, intensity, 0) * 1.45f;
+      glowComp.Props.glowColor = mgr.FactoredColor * 1.45f;
       glowComp.Props.glowRadius = radius;
 
       // If the WindowGlow is overlit, add an overlightRadius
@@ -199,6 +199,11 @@ namespace WindowMod {
 
       // Finalize the update
       Map.glowGrid.MarkGlowGridDirty(glower.Position);
+    }
+
+
+    public override string GetInspectString() {
+      return "WIN_InspectWindow".Translate(GenMath.RoundedHundredth((skyLight1 > skyLight2) ? skyLight1 : skyLight2) * 100);
     }
   }
 }
