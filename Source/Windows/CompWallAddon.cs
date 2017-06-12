@@ -1,4 +1,5 @@
-﻿using Verse;
+﻿using RimWorld;
+using Verse;
 
 namespace WindowMod {
 
@@ -6,10 +7,12 @@ namespace WindowMod {
 
     public override void CompTickRare() {
 
-      Building wall = parent.Position.GetEdifice(parent.Map);
+      Building edifice = parent.Position.GetEdifice(parent.Map);
 
-      if (wall == null) {
-        parent.Destroy(DestroyMode.KillFinalize);
+      if (edifice == null || edifice.def == null || (edifice.def != ThingDefOf.Wall &&
+          ((edifice.Faction == null || edifice.Faction != Faction.OfPlayer) ||
+          edifice.def.graphicData == null || edifice.def.graphicData.linkFlags == 0 || (LinkFlags.Wall & edifice.def.graphicData.linkFlags) == LinkFlags.None))) {
+        parent.Destroy(DestroyMode.Deconstruct);
       }
     }
   }
