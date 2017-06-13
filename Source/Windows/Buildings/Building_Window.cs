@@ -24,6 +24,8 @@ namespace WindowMod {
     public override void SpawnSetup(Map map, bool respawningAfterLoad) {
       base.SpawnSetup(map, respawningAfterLoad);
 
+      SetFactionDirect(Faction.OfPlayerSilentFail);
+
       mgr = Map.GetComponent<WindowManager>();
 
       // Assign position info based on this window's rotation
@@ -77,7 +79,7 @@ namespace WindowMod {
     private Building SpawnGlower(IntVec3 pos) {
       // Create the glower and assign it to this faction
       Building glower = ThingMaker.MakeThing(LocalDefOf.WIN_WindowGlower) as Building;
-      glower.SetFactionDirect(Faction);
+      glower.SetFactionDirect(Faction.OfPlayerSilentFail);
 
       // Spawn the glower
       GenSpawn.Spawn(glower, pos, Map);
@@ -101,6 +103,12 @@ namespace WindowMod {
       DespawnGlower(glower2);
 
       base.DeSpawn();
+    }
+
+
+    public override void Destroy(DestroyMode mode = DestroyMode.Vanish) {
+      DeSpawn();
+      base.Destroy(mode);
     }
 
 
@@ -131,6 +139,19 @@ namespace WindowMod {
       base.TickRare();
 
       if (Spawned) {
+
+        // If the glowers managed to despawn, reset them
+        if (glower1 == null || glower2 == null) {
+          if (glower1 != null && glower2 == null) {
+            DespawnGlower(glower1);
+          }
+          else if (glower1 == null && glower2 != null){
+            DespawnGlower(glower2);
+          }
+          glower1 = SpawnGlower(viewCell1);
+          glower2 = SpawnGlower(viewCell2);
+        }
+
         skyLight1 = GetAverageGlow(viewCell1, cellRect1);
         skyLight2 = GetAverageGlow(viewCell2, cellRect2);
 
