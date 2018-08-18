@@ -4,7 +4,7 @@
 	<!-- If Glass+Lights is found, change the window cost -->
 	<Operation Class="PatchOperationSequence">
 		<success>Always</success>
-		<Operations>
+		<operations>
 			<li Class="WindowMod.PatchOperationFindMod">
 				<modName>Glass+Lights</modName>
 			</li>
@@ -17,7 +17,7 @@
 	            	</CostList>
 	            </value>
 			</li>
-		</Operations>
+		</operations>
 	</Operation>
 
 </Patch>

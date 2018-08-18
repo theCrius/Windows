@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
-
 using UnityEngine;
+
 using RimWorld;
 using Verse;
 using Verse.AI;
-using System;
-using System.Reflection;
-using System.Linq.Expressions;
 
 namespace WindowMod {
 
@@ -15,8 +12,7 @@ namespace WindowMod {
     protected override IEnumerable<Toil> MakeNewToils() {
       // TargetIndex.A is the window glower
       // TargetIndex.B is the window
-
-      Building glower = TargetA.Thing as Building;
+			
       Building_Window window = TargetB.Thing as Building_Window;
 
       // Set fail conditions
@@ -38,13 +34,11 @@ namespace WindowMod {
       };
       low.tickAction = () => {
         base.WatchTickAction();
-        if (glower != null) {
-          pawn.needs.joy.GainJoy(Mathf.Max(window.WindowViewBeauty, 0.1f) * 0.000576f, joyKind);
-          pawn.Drawer.rotator.FaceCell(TargetB.Cell);
-        }
-      };
+				pawn.needs.joy.GainJoy(Mathf.Max(window.WindowViewBeauty, 0.1f) * 0.000576f, joyKind);
+				pawn.rotationTracker.FaceCell(TargetB.Cell);
+			};
       low.defaultCompleteMode = ToilCompleteMode.Delay;
-      low.defaultDuration = CurJob.def.joyDuration;
+      low.defaultDuration = job.def.joyDuration;
       low.AddFinishAction(() => {
         // Create the basic memory
         Thought_Memory thought_Memory = (Thought_Memory)ThoughtMaker.MakeThought(LocalDefOf.WIN_LookedOutWindowRegular);

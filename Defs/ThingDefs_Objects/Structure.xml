@@ -1,46 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ThingDefs>
+<Defs>
 
-	<ThingDef ParentName="BuildingBase">
-		<defName>WIN_Window</defName>
-		<thingClass>WindowMod.Building_Window</thingClass>
-		<label>framed window</label>
-		<Description>A simple window for allowing natural light into a room. Can be built into a wall.</Description>
-		<blockLight>true</blockLight>
-		<graphicData>
-			<texPath>Cupro/Object/Structure/Window/Window</texPath>
-			<graphicClass>Graphic_Multi</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
-		</graphicData>
-		<AltitudeLayer>Pawn</AltitudeLayer>
-		<useHitPoints>False</useHitPoints>
-		<statBases>
-			<WorkToBuild>500</WorkToBuild>
-			<Flammability>0</Flammability>
-		</statBases>
-		<stuffCategories>
-			<li>Metallic</li>
-		</stuffCategories>
-		<costStuffCount>10</costStuffCount>
-		<CostList>
-			<Steel>10</Steel>
-		</CostList>
-		<Size>(1,1)</Size>
-		<DesignationCategory>Structure</DesignationCategory>
-		<selectable>true</selectable>
-		<building>
-			<isEdifice>false</isEdifice>
-		</building>
-		<tickerType>Rare</tickerType>
-		<comps>
-			<li>
-				<compClass>WindowMod.CompWallAddon</compClass>
-			</li>
-		</comps>
-		<placeWorkers>
-			<li>WindowMod.PlaceWorker_WindowInWall</li>
-		</placeWorkers>
-		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
-	</ThingDef>
+  <ThingDef ParentName="BuildingBase">
+    <defName>WIN_Window</defName>
+    <thingClass>WindowMod.Building_Window</thingClass>
+    <label>framed window</label>
+    <description>A simple window for allowing natural light into a room. Can be built into a wall.</description>
+    <blockLight>true</blockLight>
+    <graphicData>
+      <texPath>Cupro/Object/Structure/Window/Window</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <shaderType>CutoutComplex</shaderType>
+    </graphicData>
+    <altitudeLayer>Pawn</altitudeLayer>
+    <useHitPoints>False</useHitPoints>
+    <statBases>
+      <WorkToBuild>500</WorkToBuild>
+      <Flammability>0</Flammability>
+    </statBases>
+    <stuffCategories>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>10</costStuffCount>
+    <costList>
+      <Steel>10</Steel>
+    </costList>
+    <size>(1,1)</size>
+    <designationCategory>Structure</designationCategory>
+    <selectable>true</selectable>
+    <clearBuildingArea>false</clearBuildingArea>
+    <building>
+      <isEdifice>false</isEdifice>
+    </building>
+    <tickerType>Rare</tickerType>
+    <comps>
+      <li>
+        <compClass>WindowMod.CompWallAddon</compClass>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>WindowMod.PlaceWorker_WindowInWall</li>
+    </placeWorkers>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+  </ThingDef>
 
-</ThingDefs>
+</Defs>

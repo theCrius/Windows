@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ThoughtDefs>
-
+<Defs>
 	<ThoughtDef>
 		<defName>WIN_LookedOutWindowRegular</defName>
 		<durationDays>0.5</durationDays>
@@ -26,6 +25,4 @@
 			</li> 
 		</stages>
 	</ThoughtDef>
-
-
-</ThoughtDefs>
+</Defs>

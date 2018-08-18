@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ThingDefinitions>
-
+<Defs>
 	<ThingDef ParentName="BuildingBase">
 		<defName>WIN_WindowGlower</defName>
 		<label>light from a window</label>
@@ -20,10 +19,14 @@
 		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
 		<tickerType>Rare</tickerType>
 		<isSaveable>false</isSaveable>
+		<comps>
+			<li Class="CompProperties_Glower">
+
+			</li>
+		</comps>
 		<building>
 			<isEdifice>false</isEdifice>
 			<deconstructible>false</deconstructible>
 		</building>
 	</ThingDef>
-
-</ThingDefinitions>
+</Defs>
