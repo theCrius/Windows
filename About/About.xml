@@ -3,6 +3,6 @@
   <name>[TWC]Windows</name>
   <author>The White Crayon</author>
   <!-- <url>https://ludeon.com/forums/index.php?topic=13400.0</url> -->
-  <targetVersion>0.19.1998</targetVersion>
+  <targetVersion>1.0.0</targetVersion>
   <description>Adds windows to the game, allowing sunlight to pass through walls. Windows can provide enough sunlight to grow crops.</description>
 </ModMetaData>
